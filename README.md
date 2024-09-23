@@ -4,3 +4,8 @@
     - Configured Tailwind CSS
     - Header
     - Sign In/Sign Up Page
+    - Routing
+    - Form Validation
+    - Firebase Set Up
+    - Firebase Deploy
+    - Implement SignUp / SignIn User API
