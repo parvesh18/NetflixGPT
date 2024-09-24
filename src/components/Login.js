@@ -4,15 +4,22 @@ import { checkValidation } from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [signInForm, setSignInForm] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const email = useRef(null);
   const password = useRef(null);
+  const name = useRef(null);
 
   function toggleSignInForm() {
     setSignInForm(!signInForm);
@@ -37,7 +44,27 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
+          updateProfile(user, {
+            displayName: name.current.value,
+            photoURL:
+              "https://lh3.googleusercontent.com/a/ACg8ocLP7Z1jXLhhY4RHurzlavUiBKZc-xT0quEwaXWoyuojag4KEwyB=s576-c-no",
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+              navigate("/browse");
+            })
+            .catch((error) => {
+              setError(error.message);
+              console.log(error);
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -53,7 +80,7 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -84,6 +111,7 @@ const Login = () => {
         </h2>
         {!signInForm && (
           <input
+            ref={name}
             type="text"
             placeholder="Full Name"
             className=" p-3 m-2 my-5 block w-full mb-6 bg-black border-[1px] border-white rounded-md"

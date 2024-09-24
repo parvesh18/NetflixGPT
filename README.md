@@ -9,3 +9,6 @@
     - Firebase Set Up
     - Firebase Deploy
     - Implement SignUp / SignIn User API
+    - Create Redux Store with userSlice
+    - Implement Sign Out
+    - Add user data to store while sign in/ sign out
