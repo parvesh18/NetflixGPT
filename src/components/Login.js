@@ -7,14 +7,12 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [signInForm, setSignInForm] = useState(false);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const email = useRef(null);
@@ -44,22 +42,19 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
+          // add displayName & profile picture
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL:
-              "https://lh3.googleusercontent.com/a/ACg8ocLP7Z1jXLhhY4RHurzlavUiBKZc-xT0quEwaXWoyuojag4KEwyB=s576-c-no",
           })
             .then(() => {
-              const { uid, email, displayName, photoURL } = auth.currentUser;
+              const { uid, email, displayName } = auth.currentUser;
               dispatch(
                 addUser({
                   uid: uid,
                   email: email,
                   displayName: displayName,
-                  photoURL: photoURL,
                 })
               );
-              navigate("/browse");
             })
             .catch((error) => {
               setError(error.message);
@@ -80,7 +75,6 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -94,13 +88,11 @@ const Login = () => {
     <div>
       <Header />
       {/* Background Image */}
-      <div>
-        <img
-          className="brightness-50 w-screen h-screen object-cover"
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/47c2bc92-5a2a-4f33-8f91-4314e9e62ef1/web/IN-en-20240916-TRIFECTA-perspective_72df5d07-cf3f-4530-9afd-8f1d92d7f1a8_large.jpg"
-          alt="background-img"
-        />
-      </div>
+      <img
+        className="brightness-50 w-screen h-screen object-cover"
+        src="https://assets.nflxext.com/ffe/siteui/vlv3/47c2bc92-5a2a-4f33-8f91-4314e9e62ef1/web/IN-en-20240916-TRIFECTA-perspective_72df5d07-cf3f-4530-9afd-8f1d92d7f1a8_large.jpg"
+        alt="background-img"
+      />
       {/* Form section */}
       <form
         onSubmit={(e) => e.preventDefault()}
