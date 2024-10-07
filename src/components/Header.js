@@ -46,17 +46,19 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="absolute w-screen bg-gradient-to-b from-black flex justify-between items-start px-10 z-10">
-      <img className="w-44 z-10 ml-10 mt-5" src={LOGO} alt="" />
+    <div className="absolute top-0 w-screen bg-gradient-to-b from-black flex justify-between items-start px-10 z-10">
+      <img className="w-28 z-10 ml-10 mt-5" src={LOGO} alt="" />
       <div className="mt-5 cursor-pointer group" onClick={signOutHandler}>
         {user && (
           <div>
             <img
               src={IMG}
-              className="h-10 w-10 object-cover inline-block pr-1 group-hover:scale-110 group-hover:duration-200"
+              className="h-6 w-6 object-cover inline-block pr-1 group-hover:scale-110 group-hover:duration-200"
               alt="user-img"
             />
-            <p className="text-white font-semibold inline-block">Sign Out</p>
+            <p className="text-white text-sm font-semibold inline-block">
+              Sign Out
+            </p>
           </div>
         )}
       </div>
