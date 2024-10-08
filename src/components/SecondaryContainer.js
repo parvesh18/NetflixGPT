@@ -13,11 +13,11 @@ const SecondaryContainer = () => {
   return (
     <div className="bg-black text-white pb-10">
       <div className="relative -mt-40 z-20 bg-transparent">
-        <MovieList title="Now Playing" movies={movies.nowPlayingMovies} />
         <MovieList title="Trending" movies={movies.topRatedMovies} />
+        <MovieList title="Now Playing" movies={movies.nowPlayingMovies} />
         <MovieList title="Popular" movies={movies.popularMovies} />
         <MovieList title="Upcoming Movies" movies={movies.upcomingMovies} />
-        {/* <MovieList title="Horror" movies={movies.nowPlayingMovies} /> */}
+        <MovieList title="Horror" movies={movies.nowPlayingMovies} />
       </div>
     </div>
   );
