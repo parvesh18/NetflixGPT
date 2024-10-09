@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 const VideoTitle = ({ title, description }) => {
   const trailer = useSelector((store) => store.movies.trailerVideo);
   if (!trailer) return;
-  console.log(trailer.trailerId);
   return (
     <div className="w-screen absolute aspect-video bg-gradient-to-r from-black via-transparent pt-48 pl-16  text-white">
       <h1 className="font-bold text-3xl tracking-wide">{title}</h1>

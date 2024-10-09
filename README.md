@@ -33,3 +33,14 @@
     - TMDB Image CDN URL
     - Made the Browse page amazing with Tailwind CSS
     - usePopularMovies Custom Hook
+    - useTopRatedMovies Custom Hook
+    - useUpcomingMovies Custom Hook
+    - Build SingleMovie Page
+    - Build useSingleMovieTrailer & useMovieDetails Custom Hook
+    - Apply Logic on PLAY button
+    - Build Footer
+    - Build useMovieCredit Custom Hook
+    - Build MovieCredit Section
+    - Build GPT Search Page
+    - Create configSlice
+    - Apply Multilingual Logic
